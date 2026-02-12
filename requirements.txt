@@ -1,7 +1,5 @@
 streamlit
 pandas
 plotly
-sqlalchemy
-pymysql
 gspread
 oauth2client
