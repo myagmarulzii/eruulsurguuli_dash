@@ -14,7 +14,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name(
 
 client = gspread.authorize(creds)
 
-sheet = client.open_by_key("SHEET_ID").sheet1
+sheet = client.open_by_key("s").sheet1
 
 data = sheet.get_all_records()
 df = pd.DataFrame(data)
