@@ -3,23 +3,20 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-# Google auth
 scope = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive",
 ]
 
-creds = ServiceAccountCredentials.from_json_keyfile_dict(
-    st.secrets["gcp_service_account"], scope
+creds = ServiceAccountCredentials.from_json_keyfile_name(
+    "backup-383605-20421239bd13.json", scope
 )
 
 client = gspread.authorize(creds)
 
-# Sheet нээх
-sheet = client.open("s").sheet1
+sheet = client.open_by_key("SHEET_ID").sheet1
 
-# Data унших
 data = sheet.get_all_records()
 df = pd.DataFrame(data)
 
-st.write(df.head())
+st.dataframe(df.head())
